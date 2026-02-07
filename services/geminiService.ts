@@ -65,21 +65,21 @@ export const getImpulseAdvice = async (product: string, price: number, hourlyRat
       body: JSON.stringify({
         contents: [{
           parts: [{
-            text: `The user wants to buy "${product}" for $${price}. They earn $${hourlyRate}/hr, so this costs them ${hours} hours of work. Give a short, 1-sentence reflection prompt to help them decide if they really need it now. Be supportive, not preachy.`
+            text: `The user wants to buy "${product}" for $${price}. They earn $${hourlyRate}/hr, so this costs them ${hours} hours of work. Suggest 1-2 cheaper alternatives to this product that would satisfy the same need but cost significantly less. Keep it to 1-2 sentences max. Be helpful and specific.`
           }]
         }]
       })
     });
 
     if (!response.ok) {
-      return "Take a moment to think about whether you really need this.";
+      return "Consider looking for a more affordable alternative that meets the same need.";
     }
 
     const data = await response.json();
-    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Consider if this aligns with your goals.";
+    return data.candidates?.[0]?.content?.parts?.[0]?.text || "There may be cheaper alternatives available that serve the same purpose.";
   } catch (error) {
     console.error('Error getting impulse advice:', error);
-    return "Take a moment to think about your purchase.";
+    return "Consider finding a more affordable option.";
   }
 };
 

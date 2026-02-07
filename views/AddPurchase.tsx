@@ -31,8 +31,8 @@ const SuccessModal: React.FC<{
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
       <div className="bg-white rounded-3xl max-w-md w-full shadow-2xl overflow-hidden my-8">
         <div className="bg-gradient-to-r from-emerald-500 to-teal-500 p-8 text-center">
-          <h1 className="text-4xl font-black text-white mb-2">GREAT CHOICE!</h1>
-          <p className="text-emerald-100 font-semibold text-lg">You saved money today</p>
+          <h1 className="text-4xl font-black text-black mb-2">GREAT CHOICE!</h1>
+          <p className="text-black font-semibold text-lg">You saved money today</p>
         </div>
 
         <div className="p-8 space-y-4">
@@ -68,13 +68,21 @@ const SuccessModal: React.FC<{
                   <div key={stock.symbol} className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-100 hover:border-emerald-300 transition-colors">
                     <div className="flex items-center gap-3">
                       <div 
-                        className="w-10 h-10 rounded-lg flex items-center justify-center"
-                        style={{ backgroundColor: getStockColor(stock.symbol) }}
+                        className="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden bg-white"
                       >
-                        {stock.symbol === 'AAPL' ? (
-                          <span className="text-xl">🍎</span>
+                        {['AAPL', 'MSFT', 'NVDA'].includes(stock.symbol) ? (
+                          <img 
+                            src={stock.logo} 
+                            alt={stock.name}
+                            className="w-8 h-8 object-contain"
+                          />
                         ) : (
-                          <span className="text-sm font-bold text-white">{stock.logo}</span>
+                          <span 
+                            className="text-sm font-bold text-white w-full h-full flex items-center justify-center"
+                            style={{ backgroundColor: getStockColor(stock.symbol) }}
+                          >
+                            {stock.logo}
+                          </span>
                         )}
                       </div>
                       <div>
@@ -364,7 +372,8 @@ const AddPurchase: React.FC<Props> = ({ settings, goals = [], onAddSavings }) =>
                  </div>
 
                  <div className="bg-gray-50 rounded-2xl p-4">
-                   <p className="text-sm text-black italic">{analysisResult.advice}</p>
+                   <p className="font-bold text-black text-sm mb-2">💡 Better Alternative</p>
+                   <p className="text-sm text-black">{analysisResult.advice}</p>
                  </div>
                </div>
 
