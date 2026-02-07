@@ -1,4 +1,4 @@
-const ALPHA_VANTAGE_API_KEY = 'PS7F4XE2SWBQJQVY';
+const ALPHA_VANTAGE_API_KEY = (import.meta as any).env.VITE_ALPHA_VANTAGE_API_KEY || 'PS7F4XE2SWBQJQVY';
 
 export interface StockQuote {
   symbol: string;

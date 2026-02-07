@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = 'AIzaSyD1wEIkp50ET4dpvO2g85amQK_VZUR2O2c';
+const GEMINI_API_KEY = (import.meta as any).env.VITE_GEMINI_API_KEY || 'AIzaSyBUBtQoMrthHOeioQLJTGAKzkvD6I2Qh2Y';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 export const analyzeProductImage = async (base64Image: string): Promise<{
